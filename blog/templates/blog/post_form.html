@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ mode }} un article</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="btn-primary">Valider</button>
+</form>
+
+<p><a href="{% url 'post_list' %}">Retour</a></p>
+{% endblock %}

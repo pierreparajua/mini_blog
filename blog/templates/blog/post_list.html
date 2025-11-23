@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Liste des articles</h2>
+<p>
+    <a href="{% url 'post_create' %}" class="btn-primary">Nouvel article</a>
+</p>
+
+{% if posts %}
+    {% for post in posts %}
+        <article class="post-card">
+            <h3 class="post-title">{{ post.title }}</h3>
+            <p>{{ post.content|truncatewords:20 }}</p>
+            <div class="post-meta">
+                Créé le {{ post.created_at }}
+            </div>
+            <a href="{% url 'post_update' post.pk %}">Modifier</a>
+            <a href="{% url 'post_delete' post.pk %}">Supprimer</a>
+        </article>
+    {% endfor %}
+{% else %}
+    <p>Aucun article pour le moment.</p>
+{% endif %}
+
+{% endblock %}
